@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV || 'production';
 
 module.exports = {
   entry: {
-    index: ['./src/renderer/style/index.scss', './src/renderer/script/index.ts'],
+    index: ['./src/renderer/style/styles.scss', './src/renderer/script/index.ts'],
   },
   mode: env,
   target: 'electron-renderer',
@@ -61,6 +61,18 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      }
     ],
   },
   resolve: {

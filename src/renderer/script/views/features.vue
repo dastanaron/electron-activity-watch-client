@@ -34,23 +34,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-#click-box {
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1 0 auto;
-  user-select: none;
-
-  > div {
-    background-color: #999;
-    padding: 3rem;
-    width: 100%;
-
-    &:nth-child(1) { background-color: #999; }
-    &:nth-child(2) { background-color: #bbb; }
-  }
-}
-</style>
