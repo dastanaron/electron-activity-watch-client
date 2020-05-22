@@ -10,7 +10,7 @@
     "time",
     "tracker"
   ],
-  "author": "Dastanaron",
+  "author": "Dastanaron <flow199@yandex.ru>",
   "license": "MPL-2.0",
   "main": "dist/main.js",
   "scripts": {
@@ -28,8 +28,8 @@
     "test:unit": "jest test/unit"
   },
   "build": {
-    "productName": "electron-ts-vue",
-    "appId": "org.archco.electron-ts-vue",
+    "productName": "activity-watch-client",
+    "appId": "org.archco.activity-watch-client",
     "directories": {
       "buildResources": "resources/**/*",
       "output": "build"
@@ -59,7 +59,12 @@
       "icon": "resources/icons/icon-256.png"
     },
     "linux": {
-      "icon": "resources/icons/icon-256.png"
+      "icon": "resources/icons/icon-256.png",
+      "category": "Utility",
+      "target": [
+        "deb",
+        "rpm"
+      ]
     }
   },
   "dependencies": {

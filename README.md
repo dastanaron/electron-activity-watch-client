@@ -1,26 +1,13 @@
-# Electron-Typescript-Vue
+ActivityWatch client
+===================================
 
-Electron-Typescript-Vue Starter.
+This is a client for the [ActivityWatch](https://github.com/ActivityWatch/activitywatch) 
+time tracker.
 
-## Getting started
+This client will send requests to the API to create a timer bundle for its host machine,
+collect data about the AFK and window titles, compare it with the data of the built-in
+tracker and generate reports.
 
-``` sh
-git clone https://github.com/archco/electron-ts-vue.git
-cd electron-ts-vue
-npm install
-npm run dev
-```
-
-## NPM run-scripts
-
-| Command | Description |
-| ------- | ----------- |
-| `npm run build:pack` | Build electron package. This is useful for testing purposes. |
-| `npm run build` | Build application for distributable format. |
-| `npm run dev` | Running electron for development mode. |
-| `npm run compile` | Compiles source files. |
-| `npm test` | Testing e2e and unit. |
-
-## TODO
-
-- electron-builder
+When ActivityWatch can be used not only locally, this client will help users to monitor
+their reports themselves, even if they do not have access to the ActivityWatch server.
+In addition, this client will only need to calculate reports when the timer has been enabled.
