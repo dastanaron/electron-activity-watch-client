@@ -79,6 +79,7 @@ module.exports = {
     extensions: ['.js', '.json', '.ts', '.scss', '.vue', '.svg'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
+      '@root': path.resolve(__dirname, '../src'),
     },
   },
   devtool: env === 'production' ? false : 'source-map',

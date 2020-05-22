@@ -9,8 +9,8 @@ const windowURL = process.env.NODE_ENV === 'development'
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    height: 640,
-    width: 1024,
+    width: 390,
+    height: 600,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),

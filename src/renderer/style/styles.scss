@@ -1,3 +1,12 @@
 @import 'variables';
 
 h1 { color: $main-color; }
+
+a.link-menu-item {
+  float: left;
+  text-decoration: none;
+}
+
+.main-menu {
+  margin-bottom: 1rem;
+}

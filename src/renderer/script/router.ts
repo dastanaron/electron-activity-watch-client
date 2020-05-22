@@ -1,13 +1,15 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from './views/home.vue';
-import Features from './views/features.vue';
+import Dashboard from './views/dashboard.vue';
+import Settings from './views/settings.vue';
 
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
-  { path: '/', component: Home },
-  { path: '/features', component: Features },
+  { path: '/', name: 'Home', component: Home },
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/settings', name: 'Settings', component: Settings},
 ];
 
 export default new VueRouter({

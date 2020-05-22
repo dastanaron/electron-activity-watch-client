@@ -3,8 +3,10 @@ import * as ElementUI from 'element-ui';
 import router from './router';
 import store from './store';
 import App from './app.vue';
+import {utilsPlugin} from './plugins/Utils'
 
 Vue.use(ElementUI);
+Vue.use(utilsPlugin);
 
 declare global {
   interface Window {
