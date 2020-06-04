@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
+import Wrapper from "./ActivityWatch/API/Wrapper";
 
 let mainWindow: Electron.BrowserWindow;
 const windowURL = process.env.NODE_ENV === 'development'
@@ -13,7 +14,7 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      preload: path.join(__dirname, 'preload.js'),
+      //preload: path.join(__dirname, 'preload.js'),
     },
   });
 
@@ -32,6 +33,9 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  Wrapper.getBucketsAPI().createBucket();
+
 }
 
 // This method will be called when Electron has finished
