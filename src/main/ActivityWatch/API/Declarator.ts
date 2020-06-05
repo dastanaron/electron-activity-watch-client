@@ -46,13 +46,13 @@ export class Declarator
 
     public setEntryPoint(entryPoint: string): Declarator
     {
-        this.address.entryPoint = entryPoint.replace(/^\\/gi, '');
+        this.address.entryPoint = entryPoint.replace(/^\//, '');
         return this;
     }
 
     public getUrl(): string
     {
-        return `${this.address.protocol}://${this.address.host}:${this.address.port}${this.address.entryPoint}`;
+        return `${this.address.protocol}://${this.address.host}:${this.address.port}/${this.address.entryPoint}`;
     }
 
     public getAddress(): AddressObject

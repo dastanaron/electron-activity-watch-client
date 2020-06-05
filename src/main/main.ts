@@ -14,7 +14,7 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      //preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
@@ -34,7 +34,7 @@ function createWindow() {
     mainWindow = null;
   });
 
-  Wrapper.getBucketsAPI().createBucket();
+  Wrapper.getBucketsAPI().deleteBucketById().then(res => {console.log(res)});
 
 }
 

@@ -5,12 +5,13 @@ const env = process.env.NODE_ENV || 'production';
 module.exports = {
   entry: {
     main: './src/main/main.ts',
+    preload: './src/main/preload.ts',
   },
   target: 'electron-main',
   mode: env,
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: 'main.js',
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -20,6 +21,9 @@ module.exports = {
         use: 'ts-loader',
       },
     ],
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
   },
   node: {
     __dirname: true,

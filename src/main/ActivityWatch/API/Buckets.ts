@@ -4,7 +4,7 @@ import {Declarator} from "./Declarator";
 import {METHOD_GET, METHOD_POST, METHOD_UPDATE, METHOD_DELETE} from "../../../common/Contracts/HTTP";
 import {SimpleObjectInterface} from "../../../common/Contracts/ObjectTypes";
 
-export const DEFAULT_SPACE = 'api/0/buckets/';
+export const DEFAULT_SPACE = '/api/0/buckets/';
 
 export const DEFAULT_BUCKET_ID       = `aw-electron-client_${hostname()}`;
 export const DEFAULT_BUCKET_CLIENT   = 'aw-electron-client';
@@ -42,16 +42,13 @@ export default class Buckets
                 hostname: bucketHostname,
             }),
             headers: { 'Content-Type': 'application/json', 'accept': 'application/json' },
-        }).then(res => res.json()).catch(p => {
-            console.log(p)
-        });
+        }).then(res => res.json());
     }
 
     public deleteBucketById(bucketId: string = DEFAULT_BUCKET_ID, force: number = 1): Promise<any>
     {
-        return fetch(`${this.addressDeclarator.getUrl()}${bucketId}`, {
+        return fetch(`${this.addressDeclarator.getUrl()}${bucketId}?force=${force}`, {
             method: METHOD_DELETE,
-            body: `force=${force}`,
         })
         .then(res => res.json());
     }
