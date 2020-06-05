@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
+import Wrapper from "./ActivityWatch/API/Wrapper";
 
 let mainWindow: Electron.BrowserWindow;
 const windowURL = process.env.NODE_ENV === 'development'
@@ -32,6 +33,9 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  Wrapper.getBucketsAPI().deleteBucketById().then(res => {console.log(res)});
+
 }
 
 // This method will be called when Electron has finished

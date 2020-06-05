@@ -22,9 +22,12 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+  },
   node: {
-    __dirname: false,
-    __filename: false
+    __dirname: true,
+    __filename: true
   },
   devtool: env === 'production' ? false : 'source-map',
 }
