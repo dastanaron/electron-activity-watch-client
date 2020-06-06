@@ -1,5 +1,5 @@
 import Wrapper from "../../ActivityWatch/API/Wrapper";
-import {IPCCommand, IPCMainAnswer} from "../../../common/Contracts/IPC";
+import {IPCCommand, IPCMainAnswer, IPCErrorAnswer, DEFAULT_CHANNEL_RENDER, STATUS_SUCCESS, STATUS_ERROR} from "../../../common/Contracts/IPC";
 import {IPCHandler} from "./IPCHandler";
 import Buckets, {
     DEFAULT_BUCKET_ID,
@@ -9,7 +9,7 @@ import Buckets, {
 } from "../../ActivityWatch/API/Buckets";
 import {BrowserWindow, IpcMainEvent} from "electron";
 import Utils from "../../../common/Utils/Utils";
-import {DEFAULT_CHANNEL_RENDER} from "../Wrapper";
+import {prepareErrorResponse, prepareSuccessResponse} from "../Response";
 
 export class BucketControl implements IPCHandler
 {
@@ -27,12 +27,31 @@ export class BucketControl implements IPCHandler
             case 'createBucket':
                 this.createBucketCommand(command, event);
                 break;
+            case 'deleteBucket':
+                this.deleteBucketCommand(command, event);
+                break;
             default:
                 break;
         }
     }
 
-    private createBucketCommand(command: IPCCommand, event: IpcMainEvent)
+    private deleteBucketCommand(command: IPCCommand, event: IpcMainEvent): void
+    {
+        const bucketId = Utils.object.getIfExists(command.data, 'bucketId', DEFAULT_BUCKET_ID);
+        this.api.deleteBucketById(bucketId).then(res => {
+            event.sender.send(
+                Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
+                prepareSuccessResponse({result: res})
+            );
+        }).catch(Error => {
+            event.sender.send(
+                Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
+                prepareErrorResponse(`Cannot delete the bucket with id: ${bucketId}`, {error: Error})
+            );
+        });
+    }
+
+    private createBucketCommand(command: IPCCommand, event: IpcMainEvent): void
     {
         const bucketId       = Utils.object.getIfExists(command.data, 'bucketId', DEFAULT_BUCKET_ID);
         const bucketClient   = Utils.object.getIfExists(command.data, 'bucketClient', DEFAULT_BUCKET_CLIENT);
@@ -40,15 +59,18 @@ export class BucketControl implements IPCHandler
         const bucketType     = Utils.object.getIfExists(command.data, 'bucketType', DEFAULT_BUCKET_TYPE);
 
         this.api.createBucket(bucketId, bucketClient, bucketType, bucketHostname).then(res => {
-            console.log(res);
-
-            const answer: IPCMainAnswer = {
-                status: 'ok',
-            };
-
-            event.sender.send(Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER), answer);
+            event.sender.send(
+                Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
+                prepareSuccessResponse({result: res})
+            );
+        }).catch(Error => {
+            event.sender.send(
+                Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
+                prepareErrorResponse(`Cannot create the bucket with id: ${bucketId}`, {error: Error})
+            );
         });
     }
+
 }
 
 export default new BucketControl();

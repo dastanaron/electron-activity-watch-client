@@ -13,3 +13,14 @@ export interface IPCMainAnswer extends StandardObjectInterface
     statusCode?: number,
     data?: StandardObjectInterface,
 }
+
+export interface IPCErrorAnswer extends IPCMainAnswer
+{
+    message: string,
+}
+
+export const STATUS_SUCCESS = 'ok';
+export const STATUS_ERROR   = 'error';
+
+export const DEFAULT_CHANNEL_MAIN = 'toMain';
+export const DEFAULT_CHANNEL_RENDER = 'toRender';

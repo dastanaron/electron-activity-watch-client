@@ -8,7 +8,7 @@
     "sourceMap": true,
     "baseUrl": "src",
     "paths": {
-      "@contracts": ["common/Contracts/*"]
+      "@common": ["common"]
     }
   },
   "include": [
