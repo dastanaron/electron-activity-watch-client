@@ -1,4 +1,4 @@
-export default class Time {
+export default class TimeHelper {
 
   /**
    * @param secondsCount

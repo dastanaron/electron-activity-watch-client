@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
-import Wrapper from "./ActivityWatch/API/Wrapper";
+import {listen as IPCListen} from "./IPC/Wrapper";
 
 let mainWindow: Electron.BrowserWindow;
 const windowURL = process.env.NODE_ENV === 'development'
@@ -21,6 +21,8 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadURL(windowURL);
 
+  IPCListen(mainWindow);
+
   if (process.env.NODE_ENV === 'development') {
     // Open the DevTools. Do not open it if env is test, it's for avoid occur problem when spectron testing.
     mainWindow.webContents.openDevTools({mode: "bottom"});
@@ -33,8 +35,6 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
-
-  Wrapper.getBucketsAPI().deleteBucketById().then(res => {console.log(res)});
 
 }
 

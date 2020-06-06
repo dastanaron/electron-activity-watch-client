@@ -5,7 +5,11 @@
     "moduleResolution": "node",
     "target": "es2017",
     "noImplicitAny": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "src",
+    "paths": {
+      "@contracts": ["common/Contracts/*"]
+    }
   },
   "include": [
     "src/**/*.ts",
