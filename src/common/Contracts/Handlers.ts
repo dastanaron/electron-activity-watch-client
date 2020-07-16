@@ -1,4 +1,3 @@
-export interface HandlerInterface
-{
-    handle(...args: any[]): void,
+export interface HandlerInterface {
+    handle(...args: any[]): void;
 }

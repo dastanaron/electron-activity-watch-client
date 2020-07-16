@@ -1,12 +1,11 @@
-"use strict";
+'use strict';
 exports.__esModule = true;
-var electron_1 = require("electron");
-var path = require("path");
-var Wrapper_1 = require("./ActivityWatch/API/Wrapper");
+var electron_1 = require('electron');
+var path = require('path');
+var Wrapper_1 = require('./ActivityWatch/API/Wrapper');
 var mainWindow;
-var windowURL = process.env.NODE_ENV === 'development'
-    ? 'http://localhost:9080'
-    : "file://" + __dirname + "/index.html";
+var windowURL =
+    process.env.NODE_ENV === 'development' ? 'http://localhost:9080' : 'file://' + __dirname + '/index.html';
 function createWindow() {
     // Create the browser window.
     mainWindow = new electron_1.BrowserWindow({
@@ -14,14 +13,14 @@ function createWindow() {
         height: 600,
         webPreferences: {
             nodeIntegration: true,
-            preload: path.join(__dirname, 'preload.js')
-        }
+            preload: path.join(__dirname, 'preload.js'),
+        },
     });
     // and load the index.html of the app.
     mainWindow.loadURL(windowURL);
     if (process.env.NODE_ENV === 'development') {
         // Open the DevTools. Do not open it if env is test, it's for avoid occur problem when spectron testing.
-        mainWindow.webContents.openDevTools({ mode: "bottom" });
+        mainWindow.webContents.openDevTools({ mode: 'bottom' });
     }
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -30,7 +29,7 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
-    Wrapper_1["default"].getBucketsAPI().createBucket();
+    Wrapper_1['default'].getBucketsAPI().createBucket();
 }
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

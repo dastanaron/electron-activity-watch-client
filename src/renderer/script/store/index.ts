@@ -5,7 +5,7 @@ import clickCount from './modules/clickCount';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
- modules: {
-  clickCount, // test module.
- },
+    modules: {
+        clickCount, // example module.
+    },
 });

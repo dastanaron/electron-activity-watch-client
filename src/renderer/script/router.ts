@@ -7,11 +7,11 @@ import Settings from './views/settings.vue';
 Vue.use(VueRouter);
 
 const routes: RouteConfig[] = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/settings', name: 'Settings', component: Settings},
+    { path: '/', name: 'Home', component: Home },
+    { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+    { path: '/settings', name: 'Settings', component: Settings },
 ];
 
 export default new VueRouter({
-  routes,
+    routes,
 });

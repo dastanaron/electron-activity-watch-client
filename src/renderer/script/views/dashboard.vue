@@ -1,18 +1,13 @@
 <template>
-  <div>
-    dashboard
-  </div>
+    <div>
+        dashboard
+    </div>
 </template>
 
 <script lang="ts">
-
 export default {
-  name: 'dashboard',
-  data: () => ({
-
-  }),
-  methods: {
-
-  },
+    name: 'dashboard',
+    data: () => ({}),
+    methods: {},
 };
 </script>
