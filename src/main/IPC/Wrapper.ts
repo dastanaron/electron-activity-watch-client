@@ -3,6 +3,7 @@ import { IPCCommand, DEFAULT_CHANNEL_MAIN, STATUS_ERROR, DEFAULT_CHANNEL_RENDER 
 import { prepareErrorResponse } from './Response';
 import { IPCHandler } from './Handlers/IPCHandler';
 import BucketControl from './Handlers/BucketControl';
+import SettingsControl from "./Handlers/SettingsControl";
 import Utils from '../../common/Utils/Utils';
 
 interface CommandMatchType {
@@ -11,6 +12,7 @@ interface CommandMatchType {
 
 export const CommandMatchType: CommandMatchType = {
     'bucket.control': BucketControl,
+    'settings.control': SettingsControl,
 };
 
 export function listen(window: BrowserWindow, channel: string = DEFAULT_CHANNEL_MAIN): void {

@@ -46,13 +46,13 @@ export class BucketControl implements IPCHandler {
             .then((res) => {
                 event.sender.send(
                     Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
-                    prepareSuccessResponse({ result: res }),
+                    prepareSuccessResponse({ result: res }, 'bucket.delete'),
                 );
             })
             .catch((Error) => {
                 event.sender.send(
                     Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
-                    prepareErrorResponse(`Cannot delete the bucket with id: ${bucketId}`, { error: Error }),
+                    prepareErrorResponse(`Cannot delete the bucket with id: ${bucketId}`, { error: Error }, 'bucket.delete'),
                 );
             });
     }
@@ -68,13 +68,13 @@ export class BucketControl implements IPCHandler {
             .then((res) => {
                 event.sender.send(
                     Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
-                    prepareSuccessResponse({ result: res }),
+                    prepareSuccessResponse({ result: res }, 'bucket.created'),
                 );
             })
             .catch((Error) => {
                 event.sender.send(
                     Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
-                    prepareErrorResponse(`Cannot create the bucket with id: ${bucketId}`, { error: Error }),
+                    prepareErrorResponse(`Cannot create the bucket with id: ${bucketId}`, { error: Error }, 'bucket.created'),
                 );
             });
     }

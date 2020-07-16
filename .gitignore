@@ -3,3 +3,4 @@ dist/*
 build/*
 !.gitkeep
 .idea
+configuration.json

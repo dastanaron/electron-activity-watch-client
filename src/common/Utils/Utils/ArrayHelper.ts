@@ -1,4 +1,4 @@
-import { StandardObjectInterface } from '../../Contracts/ObjectTypes';
+import { StandardObjectInterface, SimpleObjectInterface } from '../../Contracts/ObjectTypes';
 
 export default class ArrayHelper {
     public isArray(data: any): boolean {
@@ -7,6 +7,10 @@ export default class ArrayHelper {
 
     public isEmpty(array: string[] | number[] | StandardObjectInterface[]): boolean {
         return array.length === 0;
+    }
+
+    public isExistsInArray<T>(searchElement: T, array: any[]): boolean {
+        return array.includes(searchElement);
     }
 
     public getRandomElementFromArray(

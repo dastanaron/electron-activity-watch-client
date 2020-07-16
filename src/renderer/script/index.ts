@@ -2,7 +2,7 @@ import Vue from 'vue';
 import * as ElementUI from 'element-ui';
 import router from './router';
 import store from './store';
-import App from './app.vue';
+import Common from './common.vue';
 import { utilsPlugin } from './plugins/Utils';
 import { IPCPlugin } from './plugins/IPC';
 
@@ -19,5 +19,5 @@ declare global {
 window.vm = new Vue({
     router,
     store,
-    render: (h) => h(App),
+    render: (h) => h(Common),
 }).$mount('#app');

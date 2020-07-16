@@ -41,8 +41,11 @@ export default {
             this.$set(this.settingsForm, 'acceptableDowntime', this.$store.getters.acceptableDowntime);
         },
         saveSettings(): void {
-            console.log('saved');
-            //todo: implement here sending to IPC for saving configuration file
+            this.$ipc.send({
+                type: 'settings.control',
+                target: this.$store.getters.isCompletedSetting ? 'updateSettings' :'createSettings',
+                data: this.settingsForm,
+            } as IPCCommand);
 
             this.createBucket();
         },
@@ -68,13 +71,22 @@ export default {
     mounted() {
         this.fillForm();
 
-        this.$ipc.listen((event: IpcRendererEvent, command: IPCMainAnswer) => {
+        this.$ipc.listenTarget((event: IpcRendererEvent, command: IPCMainAnswer) => {
             if (command.status === 'ok') {
-                this.$message.success('Action completed successfully');
+                this.$message.success(command.data.message ? command.data.message : 'Settings completed');
+                this.$store.commit('completeSettings');
             } else {
                 this.$message.error(command.message);
             }
-        });
+        }, 'settings.created');
+
+        this.$ipc.listenTarget((event: IpcRendererEvent, command: IPCMainAnswer) => {
+            if (command.status === 'ok') {
+                this.$message.success(command.data.message ? command.data.message : 'The bucket successfully created');
+            } else {
+                this.$message.error(command.message);
+            }
+        }, 'bucket.created');
     },
 };
 </script>
