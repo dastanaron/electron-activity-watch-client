@@ -1,6 +1,7 @@
 import { ipcRenderer, IpcRendererEvent } from 'electron';
 import {
     IPCMainAnswer,
+    IPCErrorAnswer,
     IPCCommand,
     DEFAULT_CHANNEL_RENDER,
     DEFAULT_CHANNEL_MAIN,
@@ -15,11 +16,11 @@ export default class IPCHelper {
     }
 
     static listenTarget(
-        callback: (event: IpcRendererEvent, command: IPCMainAnswer) => any,
+        callback: (event: IpcRendererEvent, command: IPCMainAnswer | IPCErrorAnswer) => any,
         target: string,
         channel: string = DEFAULT_CHANNEL_RENDER,
     ): void {
-        ipcRenderer.on(channel, (event: IpcRendererEvent, command: IPCMainAnswer) => {
+        ipcRenderer.on(channel, (event: IpcRendererEvent, command: IPCMainAnswer | IPCErrorAnswer) => {
             if (command.target === target) {
                 callback(event, command);
             }

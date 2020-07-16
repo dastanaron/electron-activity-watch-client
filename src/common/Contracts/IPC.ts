@@ -15,7 +15,6 @@ export interface IPCMainAnswer extends StandardObjectInterface {
 
 export interface IPCErrorAnswer extends IPCMainAnswer {
     message: string,
-    target?: string,
 }
 
 export const STATUS_SUCCESS = 'ok';

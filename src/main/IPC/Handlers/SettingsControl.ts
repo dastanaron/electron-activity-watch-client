@@ -59,10 +59,9 @@ export class SettingsControl implements IPCHandler {
     }
 
     private createSettings(command: IPCCommand, event: IpcMainEvent, successMessage = 'Config file created successfully'): void {
-        const settings = command.data as ApplicationSettings;
-
         try {
-            fs.writeFileSync(this.settingsPath, JSON.stringify(settings));
+            const settings = command.data.form;
+            fs.writeFileSync(this.settingsPath, JSON.stringify(settings, null, 4));
             event.sender.send(
                 Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
                 prepareSuccessResponse({ message: successMessage }, 'settings.created'),

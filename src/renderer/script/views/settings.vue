@@ -44,7 +44,10 @@ export default {
             this.$ipc.send({
                 type: 'settings.control',
                 target: this.$store.getters.isCompletedSetting ? 'updateSettings' :'createSettings',
-                data: this.settingsForm,
+                data: {
+                    form: this.settingsForm,
+                    answerChannel: 'answerSettingsSaving',
+                },
             } as IPCCommand);
 
             this.createBucket();
@@ -55,6 +58,7 @@ export default {
                 target: 'createBucket',
                 data: {
                     bucketId: this.settingsForm.bucketId,
+                    answerChannel: 'answerBucketAction',
                 },
             } as IPCCommand);
         },
@@ -64,6 +68,7 @@ export default {
                 target: 'deleteBucket',
                 data: {
                     bucketId: bucketId,
+                    answerChannel: 'answerBucketAction',
                 },
             } as IPCCommand);
         },
@@ -71,22 +76,22 @@ export default {
     mounted() {
         this.fillForm();
 
-        this.$ipc.listenTarget((event: IpcRendererEvent, command: IPCMainAnswer) => {
+        this.$ipc.listen((event: IpcRendererEvent, command: IPCMainAnswer) => {
             if (command.status === 'ok') {
                 this.$message.success(command.data.message ? command.data.message : 'Settings completed');
                 this.$store.commit('completeSettings');
             } else {
                 this.$message.error(command.message);
             }
-        }, 'settings.created');
+        }, 'answerSettingsSaving');
 
-        this.$ipc.listenTarget((event: IpcRendererEvent, command: IPCMainAnswer) => {
+        this.$ipc.listen((event: IpcRendererEvent, command: IPCMainAnswer) => {
             if (command.status === 'ok') {
-                this.$message.success(command.data.message ? command.data.message : 'The bucket successfully created');
+                this.$message.success(command.data.message ? command.data.message : 'Action completed');
             } else {
                 this.$message.error(command.message);
             }
-        }, 'bucket.created');
+        }, 'answerBucketAction');
     },
 };
 </script>
