@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import clickCount from './modules/clickCount';
+import applicationSettings from './modules/applicationSettings';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        clickCount, // example module.
+        applicationSettings,
     },
 });

@@ -8,7 +8,7 @@ const windowURL = process.env.NODE_ENV === 'development' ? 'http://localhost:908
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 390,
+        width: 400,
         height: 600,
         webPreferences: {
             nodeIntegration: true,
