@@ -1,20 +1,20 @@
 import { StandardObjectInterface } from './ObjectTypes';
 
 export interface IPCCommand extends StandardObjectInterface {
-    type: string,
-    target?: string,
-    data?: StandardObjectInterface,
+    type: string;
+    target?: string;
+    data?: StandardObjectInterface;
 }
 
 export interface IPCMainAnswer extends StandardObjectInterface {
-    status: string,
-    statusCode?: number,
-    target?: string,
-    data?: StandardObjectInterface,
+    status: string;
+    statusCode?: number;
+    target?: string;
+    data?: StandardObjectInterface;
 }
 
 export interface IPCErrorAnswer extends IPCMainAnswer {
-    message: string,
+    message: string;
 }
 
 export const STATUS_SUCCESS = 'ok';

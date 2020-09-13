@@ -5,11 +5,15 @@ export function prepareSuccessResponse(data: StandardObjectInterface = {}, targe
     return {
         status: STATUS_SUCCESS,
         data: data,
-        target: target
+        target: target,
     } as IPCMainAnswer;
 }
 
-export function prepareErrorResponse(message: string, data: StandardObjectInterface = {}, target = 'error'): IPCErrorAnswer {
+export function prepareErrorResponse(
+    message: string,
+    data: StandardObjectInterface = {},
+    target = 'error',
+): IPCErrorAnswer {
     return {
         status: STATUS_ERROR,
         message: message,

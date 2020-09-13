@@ -3,7 +3,7 @@ import { IPCCommand, DEFAULT_CHANNEL_MAIN, STATUS_ERROR, DEFAULT_CHANNEL_RENDER 
 import { prepareErrorResponse } from './Response';
 import { IPCHandler } from './Handlers/IPCHandler';
 import BucketControl from './Handlers/BucketControl';
-import SettingsControl from "./Handlers/SettingsControl";
+import SettingsControl from './Handlers/SettingsControl';
 import Utils from '../../common/Utils/Utils';
 
 interface CommandMatchType {

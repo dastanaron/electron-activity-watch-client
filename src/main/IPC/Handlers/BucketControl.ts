@@ -52,7 +52,11 @@ export class BucketControl implements IPCHandler {
             .catch((Error) => {
                 event.sender.send(
                     Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
-                    prepareErrorResponse(`Cannot delete the bucket with id: ${bucketId}`, { error: Error }, 'bucket.delete'),
+                    prepareErrorResponse(
+                        `Cannot delete the bucket with id: ${bucketId}`,
+                        { error: Error },
+                        'bucket.delete',
+                    ),
                 );
             });
     }
@@ -74,7 +78,11 @@ export class BucketControl implements IPCHandler {
             .catch((Error) => {
                 event.sender.send(
                     Utils.object.getIfExists(command.data, 'answerChannel', DEFAULT_CHANNEL_RENDER),
-                    prepareErrorResponse(`Cannot create the bucket with id: ${bucketId}`, { error: Error }, 'bucket.created'),
+                    prepareErrorResponse(
+                        `Cannot create the bucket with id: ${bucketId}`,
+                        { error: Error },
+                        'bucket.created',
+                    ),
                 );
             });
     }

@@ -40,13 +40,13 @@ export default {
     computed: {
         isCompletedSettings(): boolean {
             return this.$store.getters.isCompletedSettings;
-        }
+        },
     },
     methods: {},
     mounted() {
         this.activeMenu = this.$route.name;
         if (!this.isCompletedSettings) {
-            this.$router.push({name: 'Settings'});
+            this.$router.push({ name: 'Settings' });
         }
     },
 };

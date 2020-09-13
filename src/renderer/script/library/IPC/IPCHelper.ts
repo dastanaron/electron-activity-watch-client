@@ -24,7 +24,7 @@ export default class IPCHelper {
             if (command.target === target) {
                 callback(event, command);
             }
-        })
+        });
     }
 
     static send(command: IPCCommand, channel: string = DEFAULT_CHANNEL_MAIN): void {

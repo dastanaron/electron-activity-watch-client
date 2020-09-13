@@ -10,9 +10,9 @@ import {
 import { IPCHandler } from './IPCHandler';
 import { BrowserWindow, IpcMainEvent } from 'electron';
 import Utils from '../../../common/Utils/Utils';
-import {ApplicationSettings} from "../../../common/Contracts/ApplicationSettings";
+import { ApplicationSettings } from '../../../common/Contracts/ApplicationSettings';
 import { prepareErrorResponse, prepareSuccessResponse } from '../Response';
-import {DEFAULT_BUCKET_ID} from "../../ActivityWatch/API/Buckets";
+import { DEFAULT_BUCKET_ID } from '../../ActivityWatch/API/Buckets';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -21,9 +21,9 @@ export class SettingsControl implements IPCHandler {
 
     constructor() {
         if (process.env.NODE_ENV === 'development') {
-            this.settingsPath = path.resolve(__dirname, '../../../../', 'configuration.json')
+            this.settingsPath = path.resolve(__dirname, '../../../../', 'configuration.json');
         } else {
-            this.settingsPath = path.resolve(__dirname, './', 'configuration.json')
+            this.settingsPath = path.resolve(__dirname, './', 'configuration.json');
         }
     }
 
@@ -58,7 +58,11 @@ export class SettingsControl implements IPCHandler {
         }
     }
 
-    private createSettings(command: IPCCommand, event: IpcMainEvent, successMessage = 'Config file created successfully'): void {
+    private createSettings(
+        command: IPCCommand,
+        event: IpcMainEvent,
+        successMessage = 'Config file created successfully',
+    ): void {
         try {
             const settings = command.data.form;
             fs.writeFileSync(this.settingsPath, JSON.stringify(settings, null, 4));
@@ -76,7 +80,7 @@ export class SettingsControl implements IPCHandler {
 
     private updateSettings(command: IPCCommand, event: IpcMainEvent): void {
         fs.unlinkSync(this.settingsPath);
-        this.createSettings(command, event, 'Config file updated successfully')
+        this.createSettings(command, event, 'Config file updated successfully');
     }
 }
 

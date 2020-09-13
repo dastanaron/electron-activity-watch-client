@@ -27,7 +27,7 @@ export default {
                 this.$store.commit(BUCKET_HOSTNAME, command.data[BUCKET_HOSTNAME]);
                 this.$store.commit(BUCKET_CLIENT_NAME, command.data[BUCKET_CLIENT_NAME]);
                 this.$store.commit(BUCKET_ID, command.data[BUCKET_ID]);
-                this.$store.commit(ACCEPTABLE_DOWNTIME, command.data[ACCEPTABLE_DOWNTIME]);
+                this.$store.commit(ACCEPTABLE_ DOWNTIME, command.data[ACCEPTABLE_DOWNTIME]);
                 this.$store.commit('completeSettings');
             } else {
                 this.$message.error(command.message)

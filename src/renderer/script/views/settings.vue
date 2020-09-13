@@ -43,7 +43,7 @@ export default {
         saveSettings(): void {
             this.$ipc.send({
                 type: 'settings.control',
-                target: this.$store.getters.isCompletedSetting ? 'updateSettings' :'createSettings',
+                target: this.$store.getters.isCompletedSetting ? 'updateSettings' : 'createSettings',
                 data: {
                     form: this.settingsForm,
                     answerChannel: 'answerSettingsSaving',
